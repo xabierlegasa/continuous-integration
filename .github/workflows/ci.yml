@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: composer install --ignore-platform-reqs
 
+      - name: Generate Laravel Key
+        run: php artisan key:generate
+
       - name: Run the tests
         run: composer phpunit
 
