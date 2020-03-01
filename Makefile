@@ -1,6 +1,6 @@
 .PHONY: build deps composer-install composer-update composer reload test run-tests start stop destroy doco rebuild start-local ping-mysql
 
-current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+# current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 build: deps start
 

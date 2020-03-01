@@ -8,11 +8,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.2', '7.3']
 
     name: ${{ matrix.os }} PHP ${{ matrix.php-versions }}
-
-
 
     steps:
       - uses: actions/checkout@v2
