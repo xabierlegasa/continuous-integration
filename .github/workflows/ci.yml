@@ -1,0 +1,28 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Starting worflow!
+        run: echo "Hello!!!! from ${{ github.workflow }} triggered by the event ${{ github.event_name }} done by ${{ github.actor }}"
+
+      - name: 😊 More and more
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+          echo "Job Context: $JOB_CONTEXT"
+          echo "Done!"
+
+      - name: Install dependencies
+        run: composer install --ignore-platform-reqs
+
+      - name: Run the tests
+        run: composer phpunit
+
