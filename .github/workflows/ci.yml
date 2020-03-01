@@ -33,14 +33,14 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./lessons/04-Testing_Infrastructure/04.2-Installing_dependencies_by_docker
-        run: make composer-install
+        run: make
 
 #      - name: Install application dependencies
 #        run: composer install --ignore-platform-reqs
-
-      - name: Generate Laravel Key
-        run: php artisan key:generate
-
-      - name: Run the tests
-        run: composer phpunit
+#
+#      - name: Generate Laravel Key
+#        run: php artisan key:generate
+#
+#      - name: Run the tests
+#        run: composer phpunit
 
