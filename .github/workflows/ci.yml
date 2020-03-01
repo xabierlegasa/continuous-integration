@@ -4,10 +4,14 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18]
+        #        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.3']
 
-
-
+    name: ${{ matrix.os }} PHP ${{ matrix.php-versions }}
     steps:
       - uses: actions/checkout@v2
 
@@ -22,7 +26,11 @@ jobs:
           echo "Done!"
 
       - name: Install dependencies
-        run: composer install --ignore-platform-reqs
+        working-directory: ./lessons/04-Testing_Infrastructure/04.2-Installing_dependencies_by_docker
+        run: make composer-install
+
+#      - name: Install application dependencies
+#        run: composer install --ignore-platform-reqs
 
       - name: Generate Laravel Key
         run: php artisan key:generate
