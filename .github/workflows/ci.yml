@@ -7,11 +7,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18]
-        #        php-versions: ['7.2', '7.3', '7.4']
-        php-versions: ['7.3']
+        os: [ubuntu-latest]
+        php-versions: ['7.2', '7.3', '7.4']
 
     name: ${{ matrix.os }} PHP ${{ matrix.php-versions }}
+
+
+
     steps:
       - uses: actions/checkout@v2
 
@@ -24,6 +26,12 @@ jobs:
         run: |
           echo "Job Context: $JOB_CONTEXT"
           echo "Done!"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
 
       - name: Install dependencies
         working-directory: ./lessons/04-Testing_Infrastructure/04.2-Installing_dependencies_by_docker
